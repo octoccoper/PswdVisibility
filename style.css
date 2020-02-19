@@ -36,3 +36,10 @@
     fill: #636463;
     cursor: pointer;
 }
+
+.control[class*=' above-all'] {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+}
