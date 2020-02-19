@@ -1,38 +1,35 @@
-const showHideControl = {
-    init: function () {
-        this.addEventListeners();
+const showHidePasswordControl = {
+    init: function (elements) {
+        this.elements = elements;
+        this.binds();
     },
 
-    addEventListeners: function () {
-        const self = this;
-        const divs = document.querySelectorAll('.show-password');
-
-        divs.forEach(function (element) {
-            element.addEventListener("click", function () {
-                self.addInput(this);
-            });
-        });
+    binds: function (elements) {
+        for (let i = 0; i < this.elements.length; i++) {
+            let element = this.elements[i];
+            element.addEventListener("click", () => this.createInput(element));
+        }
     },
 
-    addInput: function (item) {
-        const self = this;
+    createInput: function (item) {
 
         const parentItem = item.previousElementSibling.parentElement;
+
         const prevSiblingId = item.previousElementSibling.id;
 
         const txtInputWrap = document.createElement('div');
         const inputBox = document.createElement('input');
 
-        const txtInputWrapClass = this.generateCssClass(36,2,15);
+        const txtInputWrapClass = this.generateCssClass(36, 2, 15);
         const currentInputVal = this.getValue(prevSiblingId);
 
         const currentIcon = document.querySelector('.show-password');
         let duplicatedIcon;
-            if(currentIcon.length !== 0) {
-                duplicatedIcon = currentIcon.cloneNode(true);
-            } else {
-                console.warn(".show-password element doesn't exist");
-            }
+        if (currentIcon.length !== 0) {
+            duplicatedIcon = currentIcon.cloneNode(true);
+        } else {
+            console.warn(".show-password element doesn't exist");
+        }
 
         txtInputWrap.classList = `control above-all${txtInputWrapClass}`;
 
@@ -48,13 +45,11 @@ const showHideControl = {
             txtInputWrap.append(duplicatedIcon);
             parentItem.append(txtInputWrap);
 
-            txtInputWrap.querySelector('.input-text').addEventListener("change", function () {
-                self.setValue(this);
-            });
+            const currentInput = txtInputWrap.querySelector('.input-text');
+	    currentInput.addEventListener("change", () => this.setValue(currentInput));
 
-            txtInputWrap.querySelector('.show-password').addEventListener("click", function () {
-                self.removeEl(this);
-            });
+	    const currentShowPasswIcon = txtInputWrap.querySelector('.show-password');
+            currentShowPasswIcon.addEventListener("click", () => this.removeEl(currentShowPasswIcon));
         }
 
     },
@@ -91,8 +86,10 @@ const showHideControl = {
     }
 };
 
-
 document.addEventListener("DOMContentLoaded", function () {
-    const newShowHideControl = Object.create(showHideControl);
-    showHideControl.init();
+
+    const showPasswordCollection = document.querySelectorAll('.show-password');
+
+    if (showPasswordCollection.length > 0) showHidePasswordControl.init(showPasswordCollection);
+
 });
