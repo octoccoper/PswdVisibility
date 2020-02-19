@@ -43,3 +43,24 @@
     width: 100%;
     top: 0;
 }
+
+#submit {
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding: 13px 25px;
+    position: relative;
+    transition: .25s ease-in-out;
+    border-radius: 2px;
+    background: #1C69D4;
+    border: 1px solid #1C69D4;
+    max-width: 300px;
+    margin-top: 20px;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.field.password.required {
+    margin-bottom: 20px;
+}

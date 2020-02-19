@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   const divs = document.querySelectorAll('.show-password');
 
-
     divs.forEach(function(element) {
     element.addEventListener("click", function() {
 	addInput(this);
@@ -22,7 +21,7 @@ addInput = (item) => {
  if(checkValue(prevSiblingId)) {
 
     txtInputBox.innerHTML = `<input type='text' autocomplete="off" class='input-text' value=${currentVal} onchange="setValue(this);">
-<span class="show-password above-all${itemClass}" onclick="removeEl(this);">
+    <span class="show-password above-all${itemClass}" onclick="removeEl(this);">
                             <svg class="show-password__icon" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="24px"
                                  viewBox="0 0 25 24" version="1.1">
@@ -68,7 +67,7 @@ checkValue = (item) => {
 }
 
 removeEl = (item) => {
-const classData = item.parentElement.classList.value;
-const element = document.querySelector(`[class*="${classData}"]`);
-element.remove();
+	const classData = item.parentElement.classList.value;
+	const element = document.querySelector(`[class*="${classData}"]`);
+	element.remove();
 }
