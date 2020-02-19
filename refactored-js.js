@@ -16,16 +16,26 @@ const showHideControl = {
 
     addInput: function (item) {
         const self = this;
+
         const parentItem = item.previousElementSibling.parentElement;
         const prevSiblingId = item.previousElementSibling.id;
+
         const txtInputWrap = document.createElement('div');
         const inputBox = document.createElement('input');
+
         const txtInputWrapClass = this.generateCssClass(36,2,15);
         const currentInputVal = this.getValue(prevSiblingId);
+
         const currentIcon = document.querySelector('.show-password');
-        const duplicatedIcon = currentIcon.cloneNode(true);
+        let duplicatedIcon;
+            if(currentIcon.length !== 0) {
+                duplicatedIcon = currentIcon.cloneNode(true);
+            } else {
+                console.warn(".show-password element doesn't exist");
+            }
 
         txtInputWrap.classList = `control above-all${txtInputWrapClass}`;
+
         this.setAttributes(inputBox,
             'class', 'input-text',
             'autocomplete', 'off',
